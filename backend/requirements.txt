@@ -1,3 +1,4 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
 fastapi
 uvicorn
 python-dotenv
@@ -5,6 +6,7 @@ supabase
 groq
 pypdf
 sentence-transformers
+torch==2.14.1+cpu
 requests
 apscheduler
 google-api-python-client
