@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import {
   BookOpen,
   FileText,
@@ -6,6 +7,7 @@ import {
   Upload,
   Trash2,
 } from "lucide-react";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function KnowledgeBase() {
   const [documents, setDocuments] = useState([]);
@@ -17,7 +19,7 @@ export default function KnowledgeBase() {
       setLoading(true);
 
       const response = await fetch(
-        "http://127.0.0.1:8000/knowledge-base/documents"
+        `${API_URL}/knowledge-base/documents`
       );
 
       if (!response.ok) {
@@ -48,7 +50,7 @@ export default function KnowledgeBase() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/knowledge-base/upload",
+        `${API_URL}/knowledge-base/upload`,
         {
           method: "POST",
           body: formData,
@@ -83,7 +85,7 @@ export default function KnowledgeBase() {
 
   try {
     const response = await fetch(
-      `http://127.0.0.1:8000/knowledge-base/documents/${document.id}`,
+      `${API_URL}/knowledge-base/documents/${document.id}`,
       {
         method: "DELETE",
       }

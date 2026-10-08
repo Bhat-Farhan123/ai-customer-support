@@ -1,5 +1,106 @@
 # AI Customer Support System
 
+
+An AI-powered customer support platform that integrates Gmail, automated ticket management, AI-based ticket analysis, sentiment analysis, AI reply generation, and a Retrieval-Augmented Generation (RAG) knowledge base into a centralized support dashboard.
+
+---
+
+# 1. Project Overview
+
+Customer support teams often receive a large number of emails every day. Managing these emails manually requires support agents to:
+
+- Monitor incoming emails
+- Read and understand customer problems
+- Create and categorize support tickets
+- Determine ticket priority
+- Analyze customer sentiment
+- Search through documentation for solutions
+- Write appropriate responses
+- Send replies through email
+- Track ticket status and history
+
+This process can become slow and repetitive as the number of customer requests increases.
+
+The **AI Customer Support System** was developed to reduce this manual workload by combining traditional customer-support functionality with AI and Retrieval-Augmented Generation.
+
+The system provides a centralized dashboard where support agents can monitor emails, manage tickets, use a knowledge base, generate AI-assisted replies, and communicate with customers.
+
+---
+
+# 2. Problem Statement
+
+Traditional customer support systems often depend heavily on manual work.
+
+Support agents may need to:
+
+1. Check multiple customer emails manually.
+2. Understand the issue described in each email.
+3. Decide which category the issue belongs to.
+4. Determine how urgent the issue is.
+5. Identify whether the customer is satisfied, frustrated, or angry.
+6. Search documentation to find an appropriate solution.
+7. Write a response manually.
+8. Send the response through Gmail.
+9. Track the progress of the support ticket.
+
+When the number of customer requests increases, this process can lead to:
+
+- Delayed responses
+- Increased workload for support agents
+- Repetitive manual tasks
+- Inconsistent ticket classification
+- Difficulty identifying high-priority requests
+- Difficulty finding relevant information quickly
+- Increased response time
+- Reduced visibility into support operations
+
+Therefore, there is a need for a system that can automate repetitive support tasks while still allowing human agents to review and control the final response.
+
+---
+
+# 3. Proposed Solution
+
+The proposed solution is an **AI-powered customer support platform** that connects Gmail, a FastAPI backend, Supabase, AI services, and a React dashboard.
+
+The system follows this general workflow:
+
+```text
+Customer
+   │
+   │ Sends Email
+   ▼
+ Gmail
+   │
+   ▼
+ Gmail Monitoring
+   │
+   ▼
+ FastAPI Backend
+   │
+   ├── Ticket Creation
+   ├── Ticket Classification
+   ├── Priority Detection
+   ├── Sentiment Analysis
+   ├── AI Reply Generation
+   └── RAG Knowledge Retrieval
+   │
+   ▼
+ Supabase
+   │
+   ▼
+ React Support Dashboard
+   │
+   ├── Review Ticket
+   ├── Review AI Response
+   ├── Edit Response
+   └── Send Reply
+   │
+   ▼
+ Gmail
+   │
+   ▼
+ Customer
+
 ## 🚀 How to Run
 
 ### 1. Clone the Repository
@@ -373,3 +474,11 @@ http://127.0.0.1:8000/docs
 ## 📄 License
 
 This project is developed as a capstone project.
+
+### One important correction I made
+
+I **removed `credentials.json`, `token.json`, `.env`, and `knowledge_uploads/` from the repository structure** and instead explained them as local files. That's important because those files are intentionally excluded by your `.gitignore`.
+
+Also, I didn't claim that WhatsApp is currently integrated into the working system, because that part was paused. I listed it only under **Future Improvements**.
+
+**Next step:** replace your current `README.md` with the above, then we can move to the **production deployment documentation and actually deploy the frontend + backend**.

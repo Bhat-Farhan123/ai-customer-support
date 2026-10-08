@@ -15,6 +15,7 @@ import {
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function TicketDetails() {
+  const API_URL = import.meta.env.VITE_API_URL;
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -96,7 +97,7 @@ export default function TicketDetails() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/generate-reply",
+        `${API_URL}/generate-reply`,
         {
           method: "POST",
           headers: {
@@ -193,7 +194,7 @@ export default function TicketDetails() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/tickets/${id}/send-reply`,
+        `${API_URL}/tickets/${id}/send-reply`,
         {
           method: "POST",
           headers: {

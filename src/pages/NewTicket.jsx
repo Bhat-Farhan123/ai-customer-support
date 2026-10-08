@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Plus } from "lucide-react";
 import { useTickets } from "../context/TicketContext";
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 export default function NewTicket() {
@@ -44,7 +45,7 @@ export default function NewTicket() {
   setError("");
 
   try {
-    const response = await fetch("http://127.0.0.1:8000/classify-ticket", {
+    const response = await fetch(`${API_URL}/classify-ticket`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +87,7 @@ const handleSentiment = async () => {
 
   try {
     const response = await fetch(
-      "http://127.0.0.1:8000/analyze-sentiment",
+      `${API_URL}/analyze-sentiment`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

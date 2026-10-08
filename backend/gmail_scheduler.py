@@ -38,7 +38,8 @@ from datetime import datetime
 
 
 
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
+
 
 
 def is_email_already_imported(message_id):
