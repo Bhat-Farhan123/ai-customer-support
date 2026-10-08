@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-dotenv
+supabase
+groq
+pypdf
+sentence-transformers
+requests
+apscheduler
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+python-multipart
