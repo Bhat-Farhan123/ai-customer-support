@@ -1,6 +1,7 @@
 
 
 import os
+import json
 
 from pathlib import Path
 
@@ -47,50 +48,51 @@ TOKEN_FILE = BASE_DIR / "token.json"
 
 
 def get_gmail_service():
-
     creds = None
 
+    # Production: load Gmail OAuth token from environment variable
+    gmail_token_json = os.getenv("GMAIL_TOKEN_JSON")
 
-
-    if TOKEN_FILE.exists():
-
-        creds = Credentials.from_authorized_user_file(
-
-            str(TOKEN_FILE), SCOPES
-
+    if gmail_token_json:
+        creds = Credentials.from_authorized_user_info(
+            json.loads(gmail_token_json),
+            SCOPES
         )
 
+    # Local development: use token.json
+    elif TOKEN_FILE.exists():
+        creds = Credentials.from_authorized_user_file(
+            str(TOKEN_FILE), SCOPES
+        )
 
-
+    # Refresh expired credentials
     if creds and creds.expired and creds.refresh_token:
-
         creds.refresh(Request())
 
+        # In local development, save the refreshed token.
+        # In production, keep the refreshed credentials in memory.
+        if not gmail_token_json:
+            with open(TOKEN_FILE, "w") as token:
+                token.write(creds.to_json())
 
-
+    # Local fallback: interactive OAuth
     if not creds or not creds.valid:
+        if gmail_token_json:
+            raise RuntimeError(
+                "Gmail authentication is invalid or expired. "
+                "Update GMAIL_TOKEN_JSON with a valid authorized Gmail token."
+            )
 
         flow = InstalledAppFlow.from_client_secrets_file(
-
             str(CREDENTIALS_FILE), SCOPES
-
         )
-
-
 
         creds = flow.run_local_server(port=0)
 
-
-
         with open(TOKEN_FILE, "w") as token:
-
             token.write(creds.to_json())
 
-
-
     return build("gmail", "v1", credentials=creds)
-
-
 
 
 
