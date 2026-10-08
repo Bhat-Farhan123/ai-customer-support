@@ -58,7 +58,11 @@ Therefore, there is a need for a system that can automate repetitive support tas
 
 ---
 
-# 3. Proposed Solution
+# 3. Proposed 
+
+“My project is an AI-powered customer support system. The main problem is that companies receive a large number of customer emails, and manually reading, categorizing, prioritizing, and replying to every email takes a lot of time.
+So I built a system that automatically reads incoming emails, creates support tickets, identifies the type and priority of the issue, analyzes the customer's sentiment, and generates an appropriate reply using AI. It also has a RAG-based knowledge base, so the AI can search company documents and use that information while generating answers.
+Basically, the goal is to reduce manual customer-support work and make the response process faster and more organized.”
 
 The proposed solution is an **AI-powered customer support platform** that connects Gmail, a FastAPI backend, Supabase, AI services, and a React dashboard.
 
